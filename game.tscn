@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4sdmdtgh2xun"]
+[gd_scene load_steps=5 format=3 uid="uid://4sdmdtgh2xun"]
 
 [ext_resource type="Script" uid="uid://w6h1kkjvbtch" path="res://player.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bvb8d3wdse3pg" path="res://game.gd" id="1_e2o6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(35, 31)
@@ -9,13 +10,14 @@ size = Vector2(35, 31)
 colors = PackedColorArray(0.271995, 0.134277, 0.133152, 1, 0.631373, 0.486275, 0.384314, 1)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_e2o6t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -12.0
 offset_top = -326.0
 offset_right = 1162.0
 offset_bottom = 322.0
-color = Color(0.276082, 0.166241, 0.0490228, 1)
+color = Color(0.521569, 0.290196, 0.215686, 1)
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("1_80nbo")

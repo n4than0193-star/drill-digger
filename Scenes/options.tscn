@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ixx5av353wo5"]
+
+[ext_resource type="Script" uid="uid://bcp78qenihtyt" path="res://Scripts/options.gd" id="1_prnvy"]
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_prnvy")
+
+[node name="Placeholder" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Placeholder (press this to go back to the main menu)"
+
+[connection signal="pressed" from="Placeholder" to="." method="_on_placeholder_pressed"]

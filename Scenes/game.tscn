@@ -1,10 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://4sdmdtgh2xun"]
 
-[ext_resource type="Script" uid="uid://bvb8d3wdse3pg" path="res://game.gd" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://bvb8d3wdse3pg" path="res://Scripts/game.gd" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://bivge62f53o7t" path="res://Scenes/player.tscn" id="2_wrm1d"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qxrlw")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="ObsTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+autostart = true
+
+[node name="PwrTimer" type="Timer" parent="Timers"]
+autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -8.0
@@ -15,10 +24,6 @@ color = Color(0.521569, 0.290196, 0.215686, 1)
 [node name="Player" parent="." instance=ExtResource("2_wrm1d")]
 position = Vector2(0, 324)
 
-[node name="ObsTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
@@ -27,4 +32,5 @@ offset_top = 37.0
 offset_right = 173.0
 offset_bottom = 64.0
 
-[connection signal="timeout" from="ObsTimer" to="." method="_on_obs_timer_timeout"]
+[connection signal="timeout" from="Timers/ObsTimer" to="." method="_on_obs_timer_timeout"]
+[connection signal="timeout" from="Timers/PwrTimer" to="." method="_on_pwr_timer_timeout"]

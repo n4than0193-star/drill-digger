@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Root-Runner"
-run/main_scene="uid://4sdmdtgh2xun"
+run/main_scene="uid://b60yjf1r4hosu"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalVariables="*res://global_variables.gd"
+GlobalVariables="*res://Scripts/global_variables.gd"
 
 [editor_plugins]
 

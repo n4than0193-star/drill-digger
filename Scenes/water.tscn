@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c84lofrq8icwj"]
 
-[ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://water.gd" id="1_slmpt"]
+[ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://Scripts/water.gd" id="1_slmpt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_seble"]
 radius = 34.0

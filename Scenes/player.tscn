@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bivge62f53o7t"]
+
+[ext_resource type="Script" uid="uid://w6h1kkjvbtch" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(35, 31)
+
+[sub_resource type="Gradient" id="Gradient_80nbo"]
+colors = PackedColorArray(0.271995, 0.134277, 0.133152, 1, 0.631373, 0.486275, 0.384314, 1)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_4flbx")
+
+[node name="RootTip" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RootTip"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="ColorRect" type="ColorRect" parent="RootTip"]
+offset_left = -17.0
+offset_top = -15.0
+offset_right = 18.0
+offset_bottom = 16.0
+
+[node name="RootTrail" type="Line2D" parent="RootTip/ColorRect"]
+show_behind_parent = true
+top_level = true
+points = PackedVector2Array(11, 49)
+width = 8.0
+default_color = Color(0.63179, 0.487655, 0.382647, 1)
+gradient = SubResource("Gradient_80nbo")
+texture_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="RootTip"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c84lofrq8icwj"]
 
-[ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://water.gd" id="1_qi1wl"]
+[ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://water.gd" id="1_slmpt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_seble"]
 radius = 34.0
@@ -9,7 +9,7 @@ height = 132.0
 [node name="Water" type="Node2D"]
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("1_qi1wl")
+script = ExtResource("1_slmpt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.57079
@@ -21,5 +21,6 @@ offset_top = -25.0
 offset_right = 57.0
 offset_bottom = 28.0
 color = Color(0.0788806, 1, 0.991131, 1)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

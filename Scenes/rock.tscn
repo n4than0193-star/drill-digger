@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://vo4rhb7ban5u"]
+
+[ext_resource type="Script" uid="uid://bhu7evmm6xqkk" path="res://Scenes/rock.gd" id="1_lgx4v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_68h2w"]
+radius = 34.0
+height = 132.0
+
+[node name="Rock" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_lgx4v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_68h2w")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = -55.0
+offset_top = -25.0
+offset_right = 57.0
+offset_bottom = 28.0
+color = Color(0.375025, 0.365648, 0.38959, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

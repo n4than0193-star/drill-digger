@@ -6,6 +6,7 @@ extends Node2D
 func _ready() -> void:
 	tip.position = Vector2(576, 0) 
 	trail.clear_points()
+	
 
 func _process(delta: float) -> void:
 	GlobalVariables.moisture -= 4.0 * delta
@@ -18,7 +19,13 @@ func _process(delta: float) -> void:
 	tip.move_and_slide()
 	tip.position.x = clamp(tip.position.x, 304, 853)
 	
-	GlobalVariables.depth += GlobalVariables.growth_speed * delta * 0.1
+	if GlobalVariables.star == true:
+		GlobalVariables.depth += GlobalVariables.growth_speed * delta * 0.3
+	elif GlobalVariables.shrink == true:
+		GlobalVariables.depth += GlobalVariables.growth_speed * delta * 0.2
+		scale *= 0.5
+	else:
+		GlobalVariables.depth += GlobalVariables.growth_speed * delta * 0.1
 	
 	if not GlobalVariables.death:	
 		for i in range(trail.get_point_count()):

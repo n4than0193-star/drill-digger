@@ -20,7 +20,7 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 		GlobalVariables.magnet = true
 		print("Magnet On")
 		$ColorRect.hide()
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(5.0).timeout
 		GlobalVariables.magnet = false
 		print("Magnet Off")
 		die()

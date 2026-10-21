@@ -5,12 +5,13 @@ var rock := preload("res://Scenes/rock.tscn")
 
 var shield := preload("res://Scenes/shield.tscn")
 var magnet := preload("res://Scenes/magnet.tscn")
+var shrinker := preload("res://Scenes/shrinker.tscn")
 var star:= preload("res://Scenes/super_star.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Overlays/Countdown.add_theme_font_size_override("normal_font_size", 32)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 		
 
 
-func _on_obs_timer_timeout() -> void:
+func _on_obs_timer_timeout() -> void:	
 	var x_pos := randf_range(354.0, 204.0+590.0)
 	var y_pos := 700.0
 	var new_obst 	
@@ -93,10 +94,12 @@ func _on_pwr_timer_timeout() -> void:
 					break
 		attempts += 1
 		
-	if r < 0.4:
+	if r < 0.3:
 		new_pwr = shield.instantiate() # one time use shield
-	elif 0.4 <= r and r < 0.8:
+	elif 0.3 <= r and r < 0.6:
 		new_pwr = magnet.instantiate() # attracts water
+	elif 0.6 <= r and r < 0.9:
+		new_pwr = shrinker.instantiate()
 	else:
 		new_pwr = star.instantiate() #equivalent of super star in mario or slightly worse lol
 		

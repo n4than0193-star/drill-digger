@@ -15,7 +15,7 @@ script = ExtResource("1_qrutd")
 [node name="ColorRect" type="ColorRect" parent="Area2D"]
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color(0.16, 0.188, 1, 1)
+color = Color(0.85064, 0.98, 0.00979999, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

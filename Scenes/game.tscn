@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://4sdmdtgh2xun"]
+[gd_scene load_steps=4 format=3 uid="uid://4sdmdtgh2xun"]
 
 [ext_resource type="Script" uid="uid://bvb8d3wdse3pg" path="res://Scripts/game.gd" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://bivge62f53o7t" path="res://Scenes/player.tscn" id="2_wrm1d"]
+
+[sub_resource type="Theme" id="Theme_qxrlw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qxrlw")
@@ -32,6 +34,8 @@ offset_left = 10.0
 offset_top = 37.0
 offset_right = 173.0
 offset_bottom = 64.0
+theme = SubResource("Theme_qxrlw")
+value = 100.0
 
 [node name="GameOver" type="Label" parent="Overlays"]
 visible = false
@@ -47,6 +51,13 @@ offset_left = 11.0
 offset_top = 68.0
 offset_right = 51.0
 offset_bottom = 91.0
+
+[node name="Countdown" type="RichTextLabel" parent="Overlays"]
+visible = false
+offset_left = 539.0
+offset_top = 289.0
+offset_right = 618.0
+offset_bottom = 345.0
 
 [connection signal="timeout" from="Timers/ObsTimer" to="." method="_on_obs_timer_timeout"]
 [connection signal="timeout" from="Timers/PwrTimer" to="." method="_on_pwr_timer_timeout"]

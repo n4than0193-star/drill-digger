@@ -8,7 +8,7 @@ func _ready() -> void:
 	trail.clear_points()
 
 func _process(delta: float) -> void:
-	GlobalVariables.moisture -= 5.0 * delta
+	GlobalVariables.moisture -= 4.0 * delta
 	if GlobalVariables.death:
 		print("Game Over! Final Depth: " + str(int(GlobalVariables.depth)))
 		set_process(false)
@@ -16,10 +16,9 @@ func _process(delta: float) -> void:
 	var direction = Input.get_axis("Left", "Right")
 	tip.velocity.x = direction * GlobalVariables.speed
 	tip.move_and_slide()
-	print(str(direction))
-	tip.position.x = clamp(tip.position.x, 10, 1142)
+	tip.position.x = clamp(tip.position.x, 304, 853)
 	
-	GlobalVariables.depth += GlobalVariables.growth_speed * delta
+	GlobalVariables.depth += GlobalVariables.growth_speed * delta * 0.1
 	
 	if not GlobalVariables.death:	
 		for i in range(trail.get_point_count()):

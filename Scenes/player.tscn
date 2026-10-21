@@ -12,9 +12,12 @@ colors = PackedColorArray(0.271995, 0.134277, 0.133152, 1, 0.631373, 0.486275, 0
 script = ExtResource("1_4flbx")
 
 [node name="RootTip" type="CharacterBody2D" parent="."]
+collision_layer = 8
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RootTip"]
 position = Vector2(0.5, 0.5)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="ColorRect" type="ColorRect" parent="RootTip"]

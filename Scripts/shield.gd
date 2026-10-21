@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 func die():
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: CharacterBody2D) -> void:
 	if body.name == "RootTip":
 		GlobalVariables.shield = true
 		die()

@@ -20,6 +20,10 @@ func _on_body_entered(body: Node2D) -> void:
 		if GlobalVariables.shield == true:
 			queue_free()
 			GlobalVariables.shield = false
+		
+		elif GlobalVariables.star == true:
+			queue_free()
+		
 		else:
 			GlobalVariables.death = true
 	else:

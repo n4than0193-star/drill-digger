@@ -11,6 +11,10 @@ func _process(delta: float) -> void:
 	
 	if position.y < -1000:
 		queue_free()
+		
+	if GlobalVariables.magnet == true:
+		GlobalVariables.moisture += 10
+		die()
 	
 func die():
 	queue_free()

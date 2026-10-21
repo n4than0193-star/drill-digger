@@ -7,6 +7,8 @@ var speed: float = 300.0 #speed at which the root goes left/right
 var trail_size: float = 200 #size of root trail	 	
 var death = false #self explanatory
 var shield = false #checks whether invincible power-up is active
+var magnet = false #checks whether magnet power up is active
+var star = false
 
 func _process(delta: float) -> void:
 	if moisture > 100.0:

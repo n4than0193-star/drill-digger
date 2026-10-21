@@ -2,18 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://Scripts/water.gd" id="1_slmpt"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_seble"]
-radius = 34.0
-height = 132.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slmpt"]
+size = Vector2(53.0007, 112)
 
-[node name="Water" type="Node2D"]
+[node name="Water" type="Node2D" groups=["spawned_items"]]
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_slmpt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_seble")
 
 [node name="ColorRect" type="ColorRect" parent="Area2D"]
 offset_left = -55.0
@@ -22,5 +19,10 @@ offset_right = 57.0
 offset_bottom = 28.0
 color = Color(0.0788806, 1, 0.991131, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.999999, 1.5)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_slmpt")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

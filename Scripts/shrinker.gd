@@ -1,10 +1,10 @@
 extends Area2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var is_dying: bool = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	pass 
+
 func _process(delta: float) -> void:
 	if not GlobalVariables.death:
 		position.y -= GlobalVariables.growth_speed * delta
@@ -12,18 +12,28 @@ func _process(delta: float) -> void:
 	if position.y < -1000:
 		queue_free()
 	
-func die():
+func die() -> void:
 	queue_free()
 
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body.name == "RootTip":
+		var collision = get_node_or_null("CollisionShape2D")
+		if collision:
+			collision.set_deferred("disabled", true)
+			
 		GlobalVariables.shrink = true
 		GlobalVariables.growth_speed = 300.0
-		print("SHRINK!!!")
 		$ColorRect.hide()
-		await get_tree().create_timer(5.0).timeout
-		GlobalVariables.shrink = false
-		GlobalVariables.growth_speed = 150.0
-		print("unshrink.")
-		die()
+
+		var global_timer := Timer.new()
+		global_timer.wait_time = 5.0
+		global_timer.one_shot = true
+		global_timer.timeout.connect(func():
+			GlobalVariables.shrink = false
+			GlobalVariables.growth_speed = 150.0
+			global_timer.queue_free())
+			
+		get_tree().root.add_child(global_timer)
+		global_timer.start()
 		
+		queue_free()

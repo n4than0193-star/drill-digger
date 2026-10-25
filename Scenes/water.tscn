@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c84lofrq8icwj"]
+[gd_scene load_steps=4 format=3 uid="uid://c84lofrq8icwj"]
 
 [ext_resource type="Script" uid="uid://bs7ot3ex61mji" path="res://Scripts/water.gd" id="1_slmpt"]
+[ext_resource type="Texture2D" uid="uid://cb2yb1lx61670" path="res://Art/water.png" id="2_gf5bf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slmpt"]
-size = Vector2(53.0007, 112)
+size = Vector2(86, 99)
 
 [node name="Water" type="Node2D" groups=["spawned_items"]]
 
@@ -12,16 +13,14 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_slmpt")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_left = -55.0
-offset_top = -25.0
-offset_right = 57.0
-offset_bottom = 28.0
-color = Color(0.0788806, 1, 0.991131, 1)
+[node name="ColorRect" type="Sprite2D" parent="Area2D"]
+position = Vector2(1, 2)
+scale = Vector2(4.21875, 3.9375)
+texture = ExtResource("2_gf5bf")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.999999, 1.5)
+position = Vector2(6.49999, 6)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_slmpt")
 

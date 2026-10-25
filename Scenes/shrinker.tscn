@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmqet0126mhov"]
+[gd_scene load_steps=4 format=3 uid="uid://cmqet0126mhov"]
 
 [ext_resource type="Script" uid="uid://d2kd3cenvo7kd" path="res://Scripts/shrinker.gd" id="1_wyack"]
+[ext_resource type="Texture2D" uid="uid://bymfqcyh4dia4" path="res://Art/shrink.png" id="2_531tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_531tj"]
-size = Vector2(40, 40)
+size = Vector2(40, 53)
 
 [node name="Shrinker" type="Node2D" groups=["spawned_items"]]
 
@@ -12,14 +13,14 @@ collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_wyack")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.249348, 0.998929, 0.21212, 1)
+[node name="ColorRect" type="Sprite2D" parent="Area2D"]
+position = Vector2(20.5, 14.5)
+scale = Vector2(2.03125, 2.03125)
+texture = ExtResource("2_531tj")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(20, 20)
+position = Vector2(20, 22.5)
 shape = SubResource("RectangleShape2D_531tj")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

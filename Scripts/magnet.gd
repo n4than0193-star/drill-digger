@@ -17,11 +17,21 @@ func die():
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body.name == "RootTip":
+		var collision = get_node_or_null("CollisionShape2D")
+		if collision:
+			collision.set_deferred("disabled", true)
+			
 		GlobalVariables.magnet = true
-		print("Magnet On")
 		$ColorRect.hide()
-		await get_tree().create_timer(5.0).timeout
-		GlobalVariables.magnet = false
-		print("Magnet Off")
-		die()
+
+		var global_timer := Timer.new()
+		global_timer.wait_time = 5.0
+		global_timer.one_shot = true
+		global_timer.timeout.connect(func():
+			GlobalVariables.magnet = false
+			global_timer.queue_free())
+			
+		get_tree().root.add_child(global_timer)
+		global_timer.start()
 		
+		queue_free()

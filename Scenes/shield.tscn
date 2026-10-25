@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhlnm5sq2v0fr"]
+[gd_scene load_steps=4 format=3 uid="uid://dhlnm5sq2v0fr"]
 
 [ext_resource type="Script" uid="uid://douhqdf16u5te" path="res://Scripts/shield.gd" id="1_17xpe"]
+[ext_resource type="Texture2D" uid="uid://dq387bg0lixy1" path="res://Art/shield.png" id="2_oux8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fad3"]
-size = Vector2(40, 40)
+size = Vector2(41, 41)
 
 [node name="Invincibility" type="Node2D" groups=["spawned_items"]]
 
@@ -12,14 +13,14 @@ collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_17xpe")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.16, 0.188, 1, 1)
+[node name="ColorRect" type="Sprite2D" parent="Area2D"]
+position = Vector2(20.5, 18.5)
+scale = Vector2(1.46875, 1.46875)
+texture = ExtResource("2_oux8c")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(20, 20)
+position = Vector2(20.5, 19.5)
 shape = SubResource("RectangleShape2D_7fad3")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

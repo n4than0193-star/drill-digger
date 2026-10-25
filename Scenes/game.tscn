@@ -1,12 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://4sdmdtgh2xun"]
+[gd_scene load_steps=11 format=3 uid="uid://4sdmdtgh2xun"]
 
 [ext_resource type="Script" uid="uid://bvb8d3wdse3pg" path="res://Scripts/game.gd" id="1_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://dem160us53dmb" path="res://Art/dirt.png" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://c7hqdd5v64ku6" path="res://Art/bg.png" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://bivge62f53o7t" path="res://Scenes/player.tscn" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://ehehi4ksidgr" path="res://Scenes/moisture_bar.gd" id="5_wowpa"]
+
+[sub_resource type="Animation" id="Animation_opfnp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(572, 177)]
+}
+
+[sub_resource type="Animation" id="Animation_n45e2"]
+resource_name = "bg"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(624, -95), Vector2(424, 195), Vector2(692, -95)]
+}
+
+[sub_resource type="Animation" id="Animation_1ehe0"]
+resource_name = "main_menu"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(667, 147), Vector2(468, 439), Vector2(667, 147)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cp0ys"]
+_data = {
+&"RESET": SubResource("Animation_opfnp"),
+&"bg": SubResource("Animation_n45e2"),
+&"main_menu": SubResource("Animation_1ehe0")
+}
 
 [sub_resource type="Theme" id="Theme_qxrlw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qxrlw")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+position = Vector2(572, 177)
+scale = Vector2(12.9318, 13.8552)
+texture = ExtResource("2_wowpa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bg2"]
+libraries = {
+&"": SubResource("AnimationLibrary_cp0ys")
+}
+autoplay = "bg"
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -18,11 +86,10 @@ autostart = true
 wait_time = 10.0
 autostart = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 284.0
-offset_right = 874.0
-offset_bottom = 648.0
-color = Color(0.521569, 0.290196, 0.215686, 1)
+[node name="ColorRect" type="Sprite2D" parent="."]
+position = Vector2(576, 317)
+scale = Vector2(19.3438, 20.9688)
+texture = ExtResource("2_3dryh")
 
 [node name="Player" parent="." instance=ExtResource("2_wrm1d")]
 position = Vector2(0, 324)
@@ -30,34 +97,57 @@ position = Vector2(0, 324)
 [node name="Overlays" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="Overlays"]
-offset_left = 10.0
-offset_top = 37.0
-offset_right = 173.0
-offset_bottom = 64.0
+offset_left = 58.0
+offset_top = 193.0
+offset_right = 102.0
+offset_bottom = 587.0
 theme = SubResource("Theme_qxrlw")
 value = 100.0
+fill_mode = 3
+script = ExtResource("5_wowpa")
 
 [node name="GameOver" type="Label" parent="Overlays"]
-visible = false
+modulate = Color(1, 0.07, 0.07, 1)
 top_level = true
-offset_left = 544.0
-offset_top = 328.0
-offset_right = 1692.0
-offset_bottom = 976.0
+offset_left = 343.0
+offset_top = 193.0
+offset_right = 910.0
+offset_bottom = 328.0
+scale = Vector2(1.28, 1.28)
+theme_override_font_sizes/font_size = 99
 text = "Game Over"
 
-[node name="DepthMeter" type="Label" parent="Overlays"]
-offset_left = 11.0
-offset_top = 68.0
-offset_right = 51.0
-offset_bottom = 91.0
+[node name="ColorRect" type="ColorRect" parent="Overlays/GameOver"]
+layout_mode = 0
+offset_left = -346.0
+offset_top = -267.0
+offset_right = 1014.0
+offset_bottom = 603.0
+color = Color(0, 0, 0, 0.52549)
 
-[node name="Countdown" type="RichTextLabel" parent="Overlays"]
-visible = false
-offset_left = 539.0
-offset_top = 289.0
-offset_right = 618.0
-offset_bottom = 345.0
+[node name="Restart" type="Button" parent="Overlays/GameOver"]
+layout_mode = 0
+offset_top = 171.0
+offset_right = 524.0
+offset_bottom = 312.0
+text = "Back to Main Menu
+"
+
+[node name="Label" type="Label" parent="Overlays/GameOver"]
+layout_mode = 0
+offset_left = 101.562
+offset_top = 126.562
+offset_right = 141.563
+offset_bottom = 168.562
+theme_override_font_sizes/font_size = 30
+
+[node name="DepthMeter" type="Label" parent="Overlays"]
+offset_left = 560.0
+offset_top = 68.0
+offset_right = 600.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 50
 
 [connection signal="timeout" from="Timers/ObsTimer" to="." method="_on_obs_timer_timeout"]
 [connection signal="timeout" from="Timers/PwrTimer" to="." method="_on_pwr_timer_timeout"]
+[connection signal="pressed" from="Overlays/GameOver/Restart" to="." method="_on_restart_pressed"]

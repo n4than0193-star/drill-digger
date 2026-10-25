@@ -11,35 +11,19 @@ var star:= preload("res://Scenes/super_star.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Overlays/Countdown.add_theme_font_size_override("normal_font_size", 32)
-
-
+	$Bg2/AnimationPlayer.play("bg")
+	GlobalVariables.death = false
+	GlobalVariables.moisture = 100.0
+	$Overlays/GameOver.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if GlobalVariables.depth > 2500:
-		$ColorRect.color = Color8(39, 20, 29, 255)
-	
-	elif GlobalVariables.depth > 2000:
-		$ColorRect.color = Color8(71, 39, 47, 255)
-	
-	elif GlobalVariables.depth > 1500:
-		$ColorRect.color = Color8(84, 49, 40, 255)
-	
-	elif GlobalVariables.depth > 1000:
-		$ColorRect.color = Color8(93, 51, 45, 255)
-	
-	elif GlobalVariables.depth > 500:
-		$ColorRect.color = Color8(103, 53, 54, 255)
-	
-	else:
-		$ColorRect.color = Color8(133, 74, 55, 255)
-		
 	$Overlays/ProgressBar.value = GlobalVariables.moisture
 	$Overlays/DepthMeter.text = str(roundi(GlobalVariables.depth)) + " m"
 	
 	if GlobalVariables.death == true:
 		$Timers/ObsTimer.stop()
 		$Overlays/GameOver.show()
+		$Overlays/GameOver/Label.text = "Final Depth: " + str(roundi(GlobalVariables.depth))
 		
 
 
@@ -106,3 +90,8 @@ func _on_pwr_timer_timeout() -> void:
 	new_pwr.position = Vector2(x_pos, y_pos)
 	add_child(new_pwr)	
 	
+	
+
+
+func _on_restart_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

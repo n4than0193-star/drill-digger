@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://vo4rhb7ban5u"]
+[gd_scene load_steps=4 format=3 uid="uid://vo4rhb7ban5u"]
 
 [ext_resource type="Script" uid="uid://bhu7evmm6xqkk" path="res://Scripts/rock.gd" id="1_lgx4v"]
+[ext_resource type="Texture2D" uid="uid://phvgnieix47p" path="res://Art/rock.png" id="2_5mkji"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgx4v"]
-size = Vector2(53.0007, 112)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_vd8au"]
+points = PackedVector2Array(-35, 0, -10, 32, 28, 36, 33, -40, -12, -32)
 
 [node name="Rock" type="Node2D" groups=["spawned_items"]]
 
@@ -12,18 +13,16 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_lgx4v")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_left = -55.0
-offset_top = -25.0
-offset_right = 57.0
-offset_bottom = 28.0
-color = Color(0.375025, 0.365648, 0.38959, 1)
+[node name="ColorRect" type="Sprite2D" parent="Area2D"]
+position = Vector2(-1, -7)
+scale = Vector2(2.625, 2.625)
+texture = ExtResource("2_5mkji")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.999999, 1.5)
+position = Vector2(-0.500002, 0.999982)
 rotation = 1.57079
 scale = Vector2(0.95, 0.95)
-shape = SubResource("RectangleShape2D_lgx4v")
+shape = SubResource("ConvexPolygonShape2D_vd8au")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

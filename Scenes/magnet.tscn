@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://du0wb4jwstacm"]
+[gd_scene load_steps=4 format=3 uid="uid://du0wb4jwstacm"]
 
 [ext_resource type="Script" uid="uid://b8kh4qolwis1w" path="res://Scripts/magnet.gd" id="1_k8q0q"]
+[ext_resource type="Texture2D" uid="uid://ltevw4sa6xms" path="res://Art/magnet.png" id="2_hrqv2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrqv2"]
 size = Vector2(40, 40)
@@ -16,22 +17,10 @@ script = ExtResource("1_k8q0q")
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_hrqv2")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.520001, 1)
-color = Color(0.97, 0.0291, 0.107508, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Area2D/ColorRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.75
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.520001, 1)
-color = Color(0.322592, 0.47404, 0.974487, 1)
+[node name="ColorRect" type="Sprite2D" parent="Area2D"]
+position = Vector2(20, 18)
+scale = Vector2(1.8225, 1.84375)
+texture = ExtResource("2_hrqv2")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
